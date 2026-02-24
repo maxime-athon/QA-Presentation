@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours | Qualité & Tests Logiciels</title>
+    <script src="./lib/tailwind.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+</head>
+
+<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+
+    <!-- Barre de Progression (Style OpenClassrooms) -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-slate-900 z-[100]">
+        <div class="h-full bg-blue-500 w-[16%] transition-all duration-500"></div>
+    </div>
+
+    <div class="flex min-h-screen">
+
+        <!-- Sidebar de Navigation Gauche -->
+        <aside
+            class="w-80 border-r border-slate-900 h-screen sticky top-0 hidden lg:flex flex-col bg-slate-950 p-6 overflow-y-auto">
+            <div class="mb-10 px-4">
+                <h1 class="text-xl font-black text-blue-500 uppercase tracking-tighter italic">QA Presentation</h1>
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mt-1">LPDM / UK - 2026</p>
+            </div>
+
+<nav id="sidebar-nav" class="space-y-2 flex-1">
+    <a href="#chapitre1" data-progress="16"
+        class="nav-link sidebar-active flex items-center gap-4 p-4 rounded-xl text-sm font-bold bg-blue-600 text-white shadow-lg transition-all border border-blue-500/20">
+        <span class="opacity-50 font-mono">01</span> Introduction & Enjeux
+    </a>
+    <a href="#typologie" data-progress="33"
+        class="nav-link text-slate-400 hover:bg-slate-900 flex items-center gap-4 p-4 rounded-xl text-sm font-bold transition-all border border-transparent">
+        <span class="opacity-30 font-mono">02</span> Typologie des Tests
+    </a>
+    <a href="#outils" data-progress="50"
+        class="nav-link text-slate-400 hover:bg-slate-900 flex items-center gap-4 p-4 rounded-xl text-sm font-bold transition-all border border-transparent">
+        <span class="opacity-30 font-mono">03</span> Arsenal Technologique
+    </a>
+    <a href="#tdd" data-progress="66"
+        class="nav-link text-slate-400 hover:bg-slate-900 flex items-center gap-4 p-4 rounded-xl text-sm font-bold transition-all border border-transparent">
+        <span class="opacity-30 font-mono">04</span> Méthodologie TDD
+    </a>
+    <a href="#cicd" data-progress="83"
+        class="nav-link text-slate-400 hover:bg-slate-900 flex items-center gap-4 p-4 rounded-xl text-sm font-bold transition-all border border-transparent">
+        <span class="opacity-30 font-mono">05</span> Automatisation CI/CD
+    </a>
+    <a href="#pratique" data-progress="100"
+        class="nav-link text-slate-400 hover:bg-slate-900 flex items-center gap-4 p-4 rounded-xl text-sm font-bold transition-all border border-transparent">
+        <span class="opacity-30 font-mono">06</span> Atelier Pratique
+    </a>
+</nav>
+
+
+            <div class="pt-6 border-t border-slate-900">
+                <a href="sommaire.html"
+                    class="text-xs text-slate-500 hover:text-white font-bold flex items-center gap-2 transition-colors">
+                    <i class="fas fa-arrow-left"></i> Retour au sommaire
+                </a>
+            </div>
+        </aside>
+
+        <!-- Contenu Principal à Droite -->
+        <main class="flex-1 max-w-5xl mx-auto px-8 md:px-16 py-12">
+
+<!-- CHAPITRE 01 : INTRODUCTION & ENJEUX (DÉFINIR LE CADRE) -->
+<article id="chapitre1" class="space-y-20 animate-in fade-in duration-1000">
+
+    <!-- En-tête : La Grande Vision -->
+    <header class="space-y-6">
+        <div
+            class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-black uppercase tracking-widest">
+            <i class="fas fa-globe"></i> Vision Globale
+        </div>
+        <h1 class="text-6xl md:text-7xl font-black italic tracking-tighter leading-tight uppercase text-white">
+            Qualité : Le <span class="text-blue-500 italic">Contrat de Confiance</span>
+        </h1>
+        <p class="text-2xl text-slate-400 font-light max-w-4xl leading-relaxed">
+            Dans un monde où chaque seconde dépend d'un algorithme, la qualité logicielle est la frontière entre un
+            <span class="text-white font-medium italic underline decoration-blue-500">service d'excellence</span> et un
+            <span class="text-red-500 font-medium italic">échec critique</span>.
+        </p>
+    </header>
+
+    <!-- Les 3 Piliers de l'Enjeu (Pourquoi on en parle ?) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- Pilier 1 : L'Enjeu Économique -->
+        <div
+            class="relative p-10 rounded-[3rem] bg-slate-900 border border-slate-800 group hover:bg-slate-900/80 transition-all">
+            <div
+                class="absolute -top-6 left-10 w-16 h-16 bg-blue-600 rounded-3xl flex items-center justify-center shadow-xl shadow-blue-900/40">
+                <i class="fas fa-money-bill-wave text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-black mb-4 italic uppercase mt-6">Économie</h3>
+            <p class="text-slate-400 text-base leading-relaxed italic">
+                "Un bug coûte cher." <br><br>
+                Plus on découvre une erreur tard, plus sa correction demande de ressources. Le test permet de <strong
+                    class="text-white">prévenir</strong> plutôt que de <strong class="text-red-500">subir</strong> des
+                pertes financières massives.
+            </p>
+        </div>
+
+        <!-- Pilier 2 : L'Enjeu de Fiabilité -->
+        <div
+            class="relative p-10 rounded-[3rem] bg-slate-900 border border-slate-800 group hover:bg-slate-900/80 transition-all">
+            <div
+                class="absolute -top-6 left-10 w-16 h-16 bg-indigo-600 rounded-3xl flex items-center justify-center shadow-xl shadow-indigo-900/40">
+                <i class="fas fa-heartbeat text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-black mb-4 italic uppercase mt-6">Sécurité</h3>
+            <p class="text-slate-400 text-base leading-relaxed italic">
+                "Zéro risque." <br><br>
+                Pour des logiciels médicaux, bancaires ou de transport (comme Ariane 5), le bug n'est pas permis.
+                Tester, c'est garantir que le code fait <strong
+                    class="text-white uppercase tracking-wider">exactement</strong> ce qu'on attend de lui.
+            </p>
+        </div>
+
+        <!-- Pilier 3 : L'Enjeu d'Image -->
+        <div
+            class="relative p-10 rounded-[3rem] bg-slate-900 border border-slate-800 group hover:bg-slate-900/80 transition-all">
+            <div
+                class="absolute -top-6 left-10 w-16 h-16 bg-emerald-600 rounded-3xl flex items-center justify-center shadow-xl shadow-emerald-900/40">
+                <i class="fas fa-user-check text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-black mb-4 italic uppercase mt-6">Réputation</h3>
+            <p class="text-slate-400 text-base leading-relaxed italic">
+                "Fidéliser." <br><br>
+                Une application qui "plante" est une application désinstallée. La qualité assure une <strong
+                    class="text-white font-bold">expérience utilisateur fluide</strong>, socle de la réputation de toute
+                entreprise numérique.
+            </p>
+        </div>
+    </div>
+
+    <!-- La Définition Simple (Pour que n'importe qui comprenne) -->
+    <div
+        class="bg-gradient-to-r from-blue-900/20 to-transparent border border-blue-500/20 rounded-[3rem] p-12 flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2 space-y-6">
+            <h2 class="text-4xl font-black italic uppercase tracking-tighter">En résumé, <span
+                    class="text-blue-500 underline underline-offset-8">c'est quoi ?</span></h2>
+            <p class="text-slate-300 text-xl leading-relaxed italic">
+                C'est l'ensemble des méthodes qui permettent de s'assurer qu'un logiciel fonctionne bien, qu'il est
+                sécurisé et qu'il pourra évoluer sans casser dans le futur.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <span
+                    class="px-4 py-2 bg-slate-900 rounded-xl border border-slate-700 text-xs font-bold uppercase tracking-widest text-blue-400">Prévenir</span>
+                <span
+                    class="px-4 py-2 bg-slate-900 rounded-xl border border-slate-700 text-xs font-bold uppercase tracking-widest text-indigo-400">Vérifier</span>
+                <span
+                    class="px-4 py-2 bg-slate-900 rounded-xl border border-slate-700 text-xs font-bold uppercase tracking-widest text-emerald-400">Garantir</span>
+            </div>
+        </div>
+        <div class="md:w-1/2 text-center border-l border-slate-800 pl-12 hidden md:block">
+            <p class="text-6xl font-black text-blue-600 mb-2">90%</p>
+            <p class="text-slate-500 uppercase font-black text-sm tracking-widest leading-tight">
+                De la valeur d'un logiciel <br> réside dans sa <span class="text-white italic">Fiabilité</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="flex justify-between items-center pt-20">
+        <div class="text-slate-600 text-xs">
+            Prochaine étape : <br><span class="text-white font-bold"> 02 Typologie des Test</span>
+        </div>
+        <a href="#typologie"
+            class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-black transition-all flex items-center gap-3">
+            CHAPITRE SUIVANT <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+</article>
+
+
+<!-- CHAPITRE 02 : TYPOLOGIE DES TESTS -->
+<article id="typologie" class="space-y-20 animate-in fade-in duration-1000 pt-20">
+
+    <!-- En-tête du Chapitre -->
+    <header class="space-y-6">
+        <div
+            class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-black uppercase tracking-widest">
+            <i class="fas fa-layer-group"></i> Architecture des Tests
+        </div>
+        <h1 class="text-6xl md:text-7xl font-black italic tracking-tighter leading-tight uppercase text-white">
+            La Pyramide de <span class="text-indigo-500 italic">Qualité</span>
+        </h1>
+        <p class="text-2xl text-slate-400 font-light max-w-4xl leading-relaxed">
+            On ne teste pas une vis comme on teste un moteur complet. Pour être efficace, le test doit être <span
+                class="text-white font-medium italic underline decoration-indigo-500">stratégique</span> et <span
+                class="text-indigo-400 font-medium">hiérarchisé</span>.
+        </p>
+    </header>
+
+    <!-- La Pyramide Visuelle (Schéma CSS) -->
+    <div class="relative py-12 flex flex-col items-center">
+        <!-- Sommet : E2E -->
+        <div
+            class="w-full max-w-[200px] h-16 bg-red-600/20 border-2 border-red-500 rounded-t-full flex items-center justify-center group hover:bg-red-500 transition-all cursor-help">
+            <span
+                class="text-[10px] font-black uppercase tracking-widest text-red-500 group-hover:text-white">End-to-End
+                (E2E)</span>
+        </div>
+        <!-- Milieu : Intégration -->
+        <div
+            class="w-full max-w-[400px] h-20 bg-indigo-600/20 border-x-2 border-b-2 border-indigo-500 flex items-center justify-center group hover:bg-indigo-500 transition-all cursor-help">
+            <span class="text-xs font-black uppercase tracking-widest text-indigo-500 group-hover:text-white">Tests
+                d'Intégration</span>
+        </div>
+        <!-- Base : Unitaires -->
+        <div
+            class="w-full max-w-[600px] h-24 bg-emerald-600/20 border-x-2 border-b-2 border-emerald-500 rounded-b-[3rem] flex items-center justify-center group hover:bg-emerald-500 transition-all cursor-help shadow-[0_20px_50px_rgba(16,185,129,0.1)]">
+            <span class="text-sm font-black uppercase tracking-widest text-emerald-500 group-hover:text-white">Tests
+                Unitaires (La Base)</span>
+        </div>
+
+        <p class="mt-8 text-slate-500 text-xs uppercase font-bold tracking-[0.3em]">Concept de Mike Cohn : Tester plus à
+            la base, moins au sommet.</p>
+    </div>
+
+    <!-- Détails des Types de Tests -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- 1. Tests Unitaires -->
+        <div class="p-10 rounded-[3rem] bg-slate-900 border-l-8 border-emerald-500 group">
+            <h3 class="text-2xl font-black mb-4 uppercase italic">01. Tests Unitaires</h3>
+            <p class="text-slate-400 leading-relaxed mb-6">
+                On teste une seule "unité" de code (une fonction, une classe) de manière totalement <strong
+                    class="text-white">isolée</strong>.
+            </p>
+            <ul class="text-xs space-y-2 text-emerald-400 font-bold uppercase tracking-wider">
+                <li><i class="fas fa-bolt mr-2"></i> Ultra Rapides</li>
+                <li><i class="fas fa-check mr-2"></i> Très Précis</li>
+                <li><i class="fas fa-dollar-sign mr-2"></i> Coût Faible</li>
+            </ul>
+        </div>
+
+        <!-- 2. Tests d'Intégration -->
+        <div class="p-10 rounded-[3rem] bg-slate-900 border-l-8 border-indigo-500 group">
+            <h3 class="text-2xl font-black mb-4 uppercase italic">02. Tests d'Intégration</h3>
+            <p class="text-slate-400 leading-relaxed mb-6">
+                On vérifie que les différentes pièces du puzzle communiquent bien entre elles (ex: <strong
+                    class="text-white text-sm">Le Site <-> La Base de données</strong>).
+            </p>
+            <ul class="text-xs space-y-2 text-indigo-400 font-bold uppercase tracking-wider">
+                <li><i class="fas fa-link mr-2"></i> Vérifie les Flux</li>
+                <li><i class="fas fa-database mr-2"></i> Teste les Liaisons</li>
+            </ul>
+        </div>
+
+        <!-- 3. Tests Fonctionnels -->
+        <div class="p-10 rounded-[3rem] bg-slate-900 border-l-8 border-blue-500 group">
+            <h3 class="text-2xl font-black mb-4 uppercase italic">03. Tests Fonctionnels</h3>
+            <p class="text-slate-400 leading-relaxed mb-6">
+                Le test "métier". Est-ce que le bouton <strong class="text-white">"Ajouter au panier"</strong> ajoute
+                bien l'article ? On teste le résultat final.
+            </p>
+            <ul class="text-xs space-y-2 text-blue-400 font-bold uppercase tracking-wider">
+                <li><i class="fas fa-user-cog mr-2"></i> Vision Métier</li>
+                <li><i class="fas fa-clipboard-list mr-2"></i> Conformité</li>
+            </ul>
+        </div>
+
+        <!-- 4. Tests E2E (End-to-End) -->
+        <div class="p-10 rounded-[3rem] bg-slate-900 border-l-8 border-red-500 group">
+            <h3 class="text-2xl font-black mb-4 uppercase italic">04. End-to-End</h3>
+            <p class="text-slate-400 leading-relaxed mb-6">
+                On simule un <strong class="text-white">vrai utilisateur</strong> sur son navigateur du début à la fin
+                de son parcours.
+            </p>
+            <ul class="text-xs space-y-2 text-red-400 font-bold uppercase tracking-wider">
+                <li><i class="fas fa-video mr-2"></i> Scénario Réel</li>
+                <li><i class="fas fa-exclamation-triangle mr-2"></i> Lents & Coûteux</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Conclusion Pédagogique : Le Résumé -->
+    <div class="p-12 bg-indigo-600 rounded-[3rem] text-white shadow-2xl shadow-indigo-900/20">
+        <h2 class="text-3xl font-black italic uppercase mb-4">Ce qu'il faut retenir :</h2>
+        <p class="text-xl font-light opacity-90 leading-relaxed italic">
+            "Plus on monte dans la pyramide, plus les tests sont lents et chers. Une bonne stratégie possède une base
+            solide de tests unitaires pour détecter les erreurs immédiatement."
+        </p>
+    </div>
+
+    <div class="flex justify-between items-center pt-20">
+        <div class="text-slate-600 text-xs">
+            Prochaine étape : <br><span class="text-white font-bold"> 03 les Outils (Jest, PHPUnit, JUnit)</span>
+        </div>
+        <a href="#outils"
+            class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-black transition-all flex items-center gap-3">
+            CHAPITRE SUIVANT <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+</article>
+
+
+<!-- CHAPITRE 03 : ARSENAL TECHNOLOGIQUE -->
+<article id="outils" class="space-y-20 animate-in fade-in duration-1000 pt-20">
+
+    <!-- En-tête du Chapitre -->
+    <header class="space-y-6">
+        <div
+            class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-widest">
+            <i class="fas fa-tools"></i> Écosystème de Test
+        </div>
+        <h1 class="text-6xl md:text-7xl font-black italic tracking-tighter leading-tight uppercase text-white">
+            L'Arsenal des <span class="text-emerald-500 italic">Experts</span>
+        </h1>
+        <p class="text-2xl text-slate-400 font-light max-w-4xl leading-relaxed">
+            À chaque langage son standard. Choisir le bon outil, c'est garantir une <span
+                class="text-white font-medium italic underline decoration-emerald-500">vitesse d'exécution</span> et une
+            <span class="text-emerald-400 font-medium">fiabilité</span> maximale.
+        </p>
+    </header>
+
+    <!-- Grille des Frameworks (Cartes d'Identité) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- JEST (JS/TS) -->
+        <div
+            class="p-8 rounded-[2.5rem] bg-slate-900 border border-slate-800 hover:border-yellow-500/50 transition-all group">
+            <div class="w-16 h-16 bg-yellow-500/10 rounded-2xl flex items-center justify-center mb-6">
+                <i class="fab fa-js text-yellow-500 text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-black mb-2 italic uppercase">Jest</h3>
+            <p class="text-blue-400 text-xs font-black mb-4 tracking-widest uppercase">JavaScript / TypeScript</p>
+            <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                Le framework "Tout-en-un" propulsé par Meta. Rapide, puissant et idéal pour le Web moderne (React, Vue,
+                Node).
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-slate-800 text-[10px] rounded-lg font-bold text-slate-400">Snapshot
+                    Testing</span>
+                <span class="px-3 py-1 bg-slate-800 text-[10px] rounded-lg font-bold text-slate-400">Mocking
+                    inclus</span>
+            </div>
+        </div>
+
+        <!-- PHPUnit (PHP) -->
+        <div
+            class="p-8 rounded-[2.5rem] bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all group">
+            <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6">
+                <i class="fab fa-php text-blue-500 text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-black mb-2 italic uppercase">PHPUnit</h3>
+            <p class="text-indigo-400 text-xs font-black mb-4 tracking-widest uppercase">PHP / Laravel</p>
+            <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                La référence absolue du monde PHP. Indispensable pour tout projet Symfony ou Laravel de qualité.
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-slate-800 text-[10px] rounded-lg font-bold text-slate-400">Standard PSR</span>
+                <span class="px-3 py-1 bg-slate-800 text-[10px] rounded-lg font-bold text-slate-400">Intégration
+                    CI</span>
+            </div>
+        </div>
+
+        <!-- JUnit 5 (JAVA) -->
+        <div
+            class="p-8 rounded-[2.5rem] bg-slate-900 border border-slate-800 hover:border-red-500/50 transition-all group">
+            <div class="w-16 h-16 bg-red-500/10 rounded-2xl flex items-center justify-center mb-6">
+                <i class="fab fa-java text-red-500 text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-black mb-2 italic uppercase">JUnit 5</h3>
+            <p class="text-red-400 text-xs font-black mb-4 tracking-widest uppercase">Java / Spring</p>
+            <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                Le pilier historique. Une architecture modulaire conçue pour les applications d'entreprise robustes.
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-slate-800 text-[10px] rounded-lg font-bold text-slate-400">Jupiter
+                    Engine</span>
+                <span class="px-3 py-1 bg-slate-800 text-[10px] rounded-lg font-bold text-slate-400">Annotations
+                    pro</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Focus : Comment choisir ? -->
+    <div class="bg-emerald-600/5 border border-emerald-500/20 rounded-[3rem] p-10 md:p-16">
+        <h2 class="text-3xl font-black italic uppercase mb-6 flex items-center gap-4">
+            <i class="fas fa-lightbulb text-emerald-500"></i> Le choix du développeur
+        </h2>
+        <p class="text-slate-300 text-xl leading-relaxed italic mb-8">
+            "Le meilleur outil n'est pas le plus populaire, mais celui qui s'intègre le mieux à votre chaîne de
+            développement."
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+            <div class="flex gap-4">
+                <i class="fas fa-check text-emerald-500 mt-1"></i>
+                <p><strong class="text-white">Analyse Statique :</strong> On vérifie le code sans l'exécuter (ex:
+                    SonarQube).</p>
+            </div>
+            <div class="flex gap-4">
+                <i class="fas fa-check text-emerald-500 mt-1"></i>
+                <p><strong class="text-white">Mocking :</strong> On simule des composants complexes (ex: API externe).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation : Bouton vers le chapitre suivant -->
+    <div class="flex justify-between items-center pt-10">
+        <div class="text-slate-600 text-xs italic font-bold">
+            Terminé : 03 Arsenal Technologique <br>
+            <span class="text-white uppercase tracking-tighter">Suivant : 04 Méthodologie TDD</span>
+        </div>
+        <a href="#tdd"
+            class="group bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl font-black text-xl transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)] flex items-center gap-4">
+            CHAPITRE SUIVANT
+            <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+        </a>
+    </div>
+
+</article>
+
+<!-- CHAPITRE 04 : MÉTHODOLOGIE TDD -->
+<article id="tdd" class="space-y-20 animate-in fade-in duration-1000 pt-20 max-w-full overflow-hidden">
+
+    <!-- En-tête du Chapitre -->
+    <header class="space-y-6 px-4">
+        <div
+            class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-widest">
+            <i class="fas fa-vial"></i> Test-Driven Development
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter leading-tight uppercase text-white">
+            Le Dogme du <span class="text-emerald-500 italic">TDD</span>
+        </h1>
+        <p class="text-xl text-slate-400 font-light max-w-3xl leading-relaxed italic">
+            Inverser le cycle de création : Écrire la preuve du besoin <span
+                class="text-white font-medium italic underline decoration-emerald-500 font-bold">avant</span> d'écrire
+            la solution.
+        </p>
+    </header>
+
+    <!-- Le Cycle Red-Green-Refactor (Optimisé pour ne pas casser le layout) -->
+    <div class="w-full py-12 flex flex-wrap lg:flex-nowrap items-center justify-center gap-6 px-4">
+
+        <!-- Étape 1 : RED -->
+        <div
+            class="flex-shrink-0 group flex flex-col items-center text-center space-y-4 w-56 p-6 rounded-[2.5rem] bg-red-600/5 border border-red-500/20 hover:bg-red-600/10 transition-all">
+            <div
+                class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.4)]">
+                <i class="fas fa-times text-white text-2xl"></i>
+            </div>
+            <h4 class="text-lg font-black text-red-500 uppercase italic">1. RED</h4>
+            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-tight">Test qui échoue</p>
+        </div>
+
+        <div class="hidden lg:block text-slate-800"><i class="fas fa-chevron-right"></i></div>
+
+        <!-- Étape 2 : GREEN -->
+        <div
+            class="flex-shrink-0 group flex flex-col items-center text-center space-y-4 w-56 p-6 rounded-[2.5rem] bg-emerald-600/5 border border-emerald-500/20 hover:bg-emerald-600/10 transition-all border-dashed">
+            <div
+                class="w-14 h-14 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+                <i class="fas fa-check text-white text-2xl"></i>
+            </div>
+            <h4 class="text-lg font-black text-emerald-500 uppercase italic">2. GREEN</h4>
+            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-tight">Code minimal</p>
+        </div>
+
+        <div class="hidden lg:block text-slate-800"><i class="fas fa-chevron-right"></i></div>
+
+        <!-- Étape 3 : REFACTOR -->
+        <div
+            class="flex-shrink-0 group flex flex-col items-center text-center space-y-4 w-56 p-6 rounded-[2.5rem] bg-blue-600/5 border border-blue-500/20 hover:bg-blue-600/10 transition-all">
+            <div
+                class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                <i class="fas fa-sync-alt text-white text-2xl"></i>
+            </div>
+            <h4 class="text-lg font-black text-blue-500 uppercase italic">3. REFACTOR</h4>
+            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-tight">Optimisation</p>
+        </div>
+
+    </div>
+
+    <!-- Section : Pourquoi le TDD ? -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4">
+        <div class="bg-slate-900/40 p-10 rounded-[3rem] border border-slate-800">
+            <h3 class="text-2xl font-black italic uppercase tracking-tight text-white mb-6">L'impact Conception</h3>
+            <ul class="space-y-5">
+                <li class="flex items-start gap-4 text-sm font-bold text-slate-400">
+                    <i class="fas fa-arrow-right text-emerald-500 mt-1"></i>
+                    <span>Code <strong class="text-white">modulaire</strong> et découplé par nature.</span>
+                </li>
+                <li class="flex items-start gap-4 text-sm font-bold text-slate-400">
+                    <i class="fas fa-arrow-right text-emerald-500 mt-1"></i>
+                    <span>Documentation <strong class="text-white">vivante</strong> : le test explique le code.</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Bloc Mocks & Stubs -->
+        <div class="p-10 rounded-[3rem] bg-slate-900 border border-slate-800">
+            <h4 class="text-xl font-black mb-6 uppercase italic flex items-center gap-3">
+                <i class="fas fa-user-secret text-blue-500 text-sm"></i> Doublures de Test
+            </h4>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-center">
+                    <span class="block text-[10px] font-black text-blue-500 uppercase tracking-widest mb-1">Stub</span>
+                    <span class="text-xs text-slate-400">Réponse figée</span>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-center">
+                    <span
+                        class="block text-[10px] font-black text-indigo-500 uppercase tracking-widest mb-1">Mock</span>
+                    <span class="text-xs text-slate-400">Vérifie l'action</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bouton Chapitre Suivant -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8 pt-10 border-t border-slate-900 px-4">
+        <div class="text-slate-600 text-[10px] uppercase font-black tracking-widest">
+            Chapitre 04 Terminé • <span class="text-blue-500">Suivant : 05 Automatisation</span>
+        </div>
+        <a href="#cicd"
+            class="group bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-black text-sm transition-all flex items-center gap-4 shadow-lg shadow-blue-900/20">
+            Étape Suivante : CI/CD
+            <i class="fas fa-infinity group-hover:rotate-180 transition-transform duration-1000"></i>
+        </a>
+    </div>
+
+</article>
+
+<!-- CHAPITRE 05 : AUTOMATION CI/CD -->
+<article id="cicd" class="space-y-20 animate-in fade-in duration-1000 pt-20 max-w-full overflow-hidden">
+
+    <!-- En-tête du Chapitre -->
+    <header class="space-y-6 px-4">
+        <div
+            class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] font-black uppercase tracking-widest">
+            <i class="fas fa-infinity animate-spin-slow"></i> Continuous Integration
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter leading-tight uppercase text-white">
+            L'Automatisation <span class="text-orange-500 italic">CI/CD</span>
+        </h1>
+        <p class="text-xl text-slate-400 font-light max-w-3xl leading-relaxed italic">
+            Transformer les tests en une <span
+                class="text-white font-medium italic underline decoration-orange-500 font-bold">barrière de
+                sécurité</span> automatisée et infranchissable.
+        </p>
+    </header>
+
+    <!-- Section : Le Pipeline (Le concept technique) -->
+    <div class="relative bg-slate-900/50 rounded-[3rem] p-10 border border-slate-800 mx-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h3 class="text-3xl font-black italic uppercase text-white">Le Pipeline de Qualité</h3>
+                <p class="text-slate-400 leading-relaxed text-sm">
+                    À chaque <strong class="text-orange-400 font-mono">git push</strong>, un robot (Runner) exécute une
+                    série d'étapes définies dans un fichier <strong class="text-white">YAML</strong>.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 bg-slate-950 p-4 rounded-2xl border border-emerald-500/30">
+                        <i class="fas fa-check-circle text-emerald-500"></i>
+                        <span class="text-xs font-bold text-slate-300">1. Build : Compilation du projet</span>
+                    </div>
+                    <div class="flex items-center gap-4 bg-slate-950 p-4 rounded-2xl border border-emerald-500/30">
+                        <i class="fas fa-vial text-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)]"></i>
+                        <span class="text-xs font-bold text-slate-300">2. Test : Lancement des suites de tests</span>
+                    </div>
+                    <div class="flex items-center gap-4 bg-slate-950 p-4 rounded-2xl border border-orange-500/30">
+                        <i class="fas fa-rocket text-orange-500"></i>
+                        <span class="text-xs font-bold text-slate-300">3. Deploy : Mise en production auto</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visuel Outils CI/CD -->
+            <div class="grid grid-cols-2 gap-4">
+                <div
+                    class="group bg-slate-950 p-8 rounded-3xl border border-slate-800 hover:border-white/50 transition-all flex flex-col items-center">
+                    <i class="fab fa-github text-4xl mb-4 text-white"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">GitHub Actions</span>
+                </div>
+                <div
+                    class="group bg-slate-950 p-8 rounded-3xl border border-slate-800 hover:border-orange-500/50 transition-all flex flex-col items-center">
+                    <i class="fab fa-gitlab text-4xl mb-4 text-orange-500"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">GitLab CI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section : Pourquoi l'automatisation ? -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+        <div class="p-8 rounded-[2.5rem] bg-orange-600/5 border border-orange-500/10">
+            <h4 class="text-lg font-black text-white uppercase italic mb-4">Avantages Clés</h4>
+            <ul class="space-y-3">
+                <li class="text-xs text-slate-400 flex gap-3"><i class="fas fa-fast-forward text-orange-500 mt-1"></i>
+                    Feedback rapide : Erreurs détectées en 2 min.</li>
+                <li class="text-xs text-slate-400 flex gap-3"><i class="fas fa-lock text-orange-500 mt-1"></i> Zéro
+                    régression : Le code cassé n'arrive jamais au client.</li>
+            </ul>
+        </div>
+        <div class="p-8 rounded-[2.5rem] bg-slate-900 border border-slate-800">
+            <h4 class="text-lg font-black text-white uppercase italic mb-4 italic text-sm">Le mantra DevOps</h4>
+            <p class="text-slate-500 text-sm leading-relaxed italic">
+                "Si ça fait mal, fais-le souvent." <br>
+                Plus on automatise, plus on réduit la peur de livrer et plus on augmente la qualité globale.
+            </p>
+        </div>
+    </div>
+
+    <!-- Bouton Chapitre Suivant -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8 pt-10 border-t border-slate-900 px-4">
+        <div class="text-slate-600 text-[10px] uppercase font-black tracking-widest">
+            Chapitre 05 Terminé • <span class="text-pink-500 italic">Phase Finale : Live Demo</span>
+        </div>
+        <a href="#pratique"
+            class="group bg-pink-600 hover:bg-pink-500 text-white px-8 py-4 rounded-2xl font-black text-sm transition-all flex items-center gap-4 shadow-lg shadow-pink-900/20">
+            PASSER À LA PRATIQUE
+            <i class="fas fa-laptop-code group-hover:scale-125 transition-transform duration-500"></i>
+        </a>
+    </div>
+
+</article>
+
+<!-- CHAPITRE 06 : ATELIER PRATIQUE (LIVE CODING) -->
+<article id="pratique" class="space-y-20 animate-in fade-in duration-1000 pt-20 max-w-full overflow-hidden pb-40">
+
+    <!-- En-tête du Chapitre -->
+    <header class="space-y-6 px-4">
+        <div
+            class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-[10px] font-black uppercase tracking-widest">
+            <i class="fas fa-terminal"></i> Hands-on Session
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter leading-tight uppercase text-white">
+            Atelier <span class="text-pink-500 italic">Pratique</span>
+        </h1>
+        <p class="text-xl text-slate-400 font-light max-w-3xl leading-relaxed italic border-l-2 border-pink-500 pl-6">
+            Cas concret : Développement en <strong class="text-white">TDD</strong> d'un module de calcul de panier avec
+            <strong class="text-pink-400 font-mono italic">Jest</strong>.
+        </p>
+    </header>
+
+    <!-- La Consigne du TP -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4">
+        <div class="p-10 rounded-[3rem] bg-slate-900 border border-slate-800 space-y-6">
+            <h3 class="text-2xl font-black italic uppercase text-white">L'objectif</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+                Nous devons créer une fonction <code class="text-pink-400">calculateTotal()</code> qui prend une liste
+                d'articles et applique une réduction si le montant dépasse 100$.
+            </p>
+            <div class="space-y-3">
+                <p
+                    class="text-[10px] font-black uppercase tracking-widest text-slate-500 italic underline underline-offset-4 decoration-pink-500">
+                    Scénarios à tester :</p>
+                <ul class="space-y-2 text-xs font-bold text-slate-300">
+                    <li class="flex gap-3"><i class="fas fa-arrow-right text-pink-500"></i> Somme de 2 articles sans
+                        remise</li>
+                    <li class="flex gap-3"><i class="fas fa-arrow-right text-pink-500"></i> Application d'une remise de
+                        10% (>100$)</li>
+                    <li class="flex gap-3"><i class="fas fa-arrow-right text-pink-500"></i> Gestion d'un panier vide
+                        (Cas limite)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Fenêtre de Code (Le Test) -->
+        <div class="bg-[#0f1117] rounded-[2.5rem] border border-slate-800 overflow-hidden shadow-2xl">
+            <div class="bg-slate-900 px-6 py-3 flex items-center justify-between border-b border-slate-800">
+                <div class="flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <span class="text-[10px] font-mono text-slate-500">cart.test.js</span>
+            </div>
+            <div class="p-6 font-mono text-sm leading-relaxed">
+                <span class="text-purple-400 italic font-bold text-xs uppercase tracking-widest block mb-4">// Étape 1 :
+                    RED (Le Test)</span>
+                <p class="text-blue-300"><span class="text-pink-400">test</span>(<span class="text-emerald-400">'remise
+                        10% si > 100$'</span>, () => {</p>
+                <p class="pl-4 text-blue-100"> <span class="text-pink-400">const</span> items = [{ price: 150 }];</p>
+                <p class="pl-4 text-blue-100"> <span class="text-pink-400">expect</span>(calculateTotal(items)).<span
+                        class="text-yellow-400 font-bold">toBe</span>(135);</p>
+                <p class="text-blue-300">});</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conclusion Finale de la Présentation -->
+    <div class="mt-40 text-center space-y-10 px-4">
+        <h2 class="text-4xl font-black italic uppercase tracking-tighter">Merci pour votre <span
+                class="text-blue-500">Attention</span> !</h2>
+        <div class="h-1 w-20 bg-blue-600 mx-auto rounded-full"></div>
+        <p class="text-slate-500 text-lg italic">Place aux questions du jury et à la démonstration en direct.</p>
+
+        <div class="flex justify-center gap-6">
+            <a href="index.html"
+                class="px-8 py-4 bg-slate-900 border border-slate-800 rounded-2xl font-bold hover:bg-slate-800 transition-all flex items-center gap-3">
+                <i class="fas fa-home text-blue-500"></i> HOME
+            </a>
+            <!-- Bouton pour imprimer ou télécharger le PDF de ton document -->
+        <!-- Lien direct pour télécharger votre document PDF réel -->
+        <a href="./assets/Qualite_Tests_Logiciels_Complet.pdf" download="Cours_Qualite_Logicielle_UK.pdf"
+            class="px-8 py-4 bg-blue-600 rounded-2xl font-black hover:bg-blue-500 transition-all shadow-xl shadow-blue-900/20 flex items-center gap-3 text-white">
+            TÉLÉCHARGER LE COURS <i class="fas fa-file-pdf ml-2"></i>
+        </a>
+
+        </div>
+    </div>
+
+</article>
+
+        </main>
+    </div>
+
+
+
+<script>
+    // On récupère tous les liens de la sidebar
+    const navLinks = document.querySelectorAll('.nav-link');
+    const progressBar = document.querySelector('.bg-blue-500'); // La petite barre tout en haut
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            // 1. On retire le style "Actif" (bleu) de TOUS les liens
+            navLinks.forEach(l => {
+                l.classList.remove('bg-blue-600', 'text-white', 'shadow-lg', 'sidebar-active');
+                l.classList.add('text-slate-400');
+            });
+
+            // 2. On ajoute le style "Actif" sur celui qu'on vient de cliquer
+            this.classList.add('bg-blue-600', 'text-white', 'shadow-lg', 'sidebar-active');
+            this.classList.remove('text-slate-400');
+
+            // 3. On fait avancer la barre de progression en haut
+            const progress = this.getAttribute('data-progress');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        });
+    });
+
+    // Bonus : Si tu as un bouton "Chapitre Suivant" dans ton texte, 
+    // ce code permet de mettre à jour la sidebar automatiquement
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            const correspondingNavLink = document.querySelector(`.nav-link[href="${targetId}"]`);
+            if (correspondingNavLink) {
+                correspondingNavLink.click(); // On simule un clic sur la sidebar
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>
